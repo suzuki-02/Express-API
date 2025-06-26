@@ -53,6 +53,30 @@ export const signUp = async (req, res, next) => {
   }
 };
 
+/**
+ * @swagger
+ * /auth/sign-in:
+ *   post:
+ *     summary: Log in a user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [email, password]
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Success, returns token
+ *       401:
+ *         description: Invalid credentials
+ */
 export const signIn = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();

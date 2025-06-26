@@ -8,6 +8,9 @@ import connectToDatabase from './database/mongodb.js';
 import errorMiddleware from './middlewares/error.middleware.js';
 import cookieParser from 'cookie-parser';
 
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './swagger.js';
+
 const app = express();
 
 app.use(express.json());
@@ -17,6 +20,8 @@ app.use(cookieParser());
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
 app.use(errorMiddleware)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (_req, res) => {
   res.send('Hello My World!');
