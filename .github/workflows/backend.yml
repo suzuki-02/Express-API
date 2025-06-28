@@ -13,6 +13,10 @@ jobs:
       matrix:
         node-version: [20]
 
+    defaults:
+      run:
+        working-directory: ./backend
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -26,7 +30,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('backend/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
