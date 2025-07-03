@@ -1,0 +1,55 @@
+import { useEffect, useState } from 'react';
+import NavBar from '../components/NavBar';
+import axios from '../utils/Axios';
+
+interface User {
+  _id: number;
+  username: string;
+  email: string;
+}
+
+const Home = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get('/users');
+        setUsers(response.data?.data || []);
+      } catch (error) {
+        console.error('Failed to fetch users:', error);
+      }
+    }
+    fetchUsers();
+  }, []);
+
+  return (
+    <>
+      <NavBar />
+
+      <div className="max-w-3xl mx-auto mt-10 bg-white p-6 rounded-lg shadow">
+        <h1 className="text-3xl font-bold text-indigo-700 mb-6">Home Page</h1>
+        <h2 className="text-2xl font-semibold text-slate-800 mb-4 border-b pb-2">
+          User List
+        </h2>
+
+        <ul className="space-y-4">
+          {users &&
+            users.map((user: User) => (
+              <li
+                key={user._id}
+                className="bg-white shadow-md p-4 rounded-lg border border-gray-200"
+              >
+                <p className="text-gray-800 font-semibold">
+                  Name: {user.username}
+                </p>
+                <p className="text-gray-600 text-sm">Email: {user.email}</p>
+              </li>
+            ))}
+        </ul>
+      </div>
+    </>
+  );
+};
+
+export default Home;
