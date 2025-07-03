@@ -11,23 +11,26 @@ import swaggerSpec from './config/swagger.js';
 
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:5174',
-  'http://127.0.0.1:5174',
-  'http://localhost:5173',
-  'http://127.0.0.1:5173',
-  'https://express-api-indol.vercel.app',
-];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (
+      !origin ||
+      origin === 'http://localhost:5173' ||
+      origin === 'http://localhost:5174' ||
+      origin.endsWith('.vercel.app')
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'));
+    }
+  },
+  credentials: true,
+};
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
