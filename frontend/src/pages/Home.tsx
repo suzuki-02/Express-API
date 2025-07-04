@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import axios from '../utils/Axios';
-
-interface User {
-  _id: number;
-  username: string;
-  email: string;
-}
+import type { User } from '../types/types';
 
 const Home = () => {
   const [users, setUsers] = useState([]);

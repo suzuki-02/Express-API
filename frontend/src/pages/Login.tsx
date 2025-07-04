@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 const Login = () => {
   const { login } = useAuthContext();
@@ -13,8 +14,12 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
-    } catch (err: any) {
-      toast.error(err.message || 'Login failed');
+    } catch (err) {
+      if (err instanceof AxiosError && err.response?.data?.message) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error('Login failed');
+      }
     }
   };
 

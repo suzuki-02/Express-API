@@ -2,12 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import axiosInstance from '../utils/Axios';
 import { useNavigate } from 'react-router-dom';
-
-interface User {
-  _id: number;
-  username: string;
-  email: string;
-}
+import type { User } from '../types/types';
+import { safeRequest } from '../utils/api';
 
 const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -20,41 +16,30 @@ const useAuth = () => {
     email: string,
     password: string
   ) => {
-    const { data } = await axiosInstance.post('/auth/sign-up', {
-      username,
-      email,
-      password,
-    });
+    const res = await safeRequest<{ token: string; user: User }>(() =>
+      axiosInstance.post('/auth/sign-up', { username, email, password })
+    );
 
-    if (data.success) {
-      const res = data.data;
+    if (res) {
       localStorage.setItem('token', res.token);
       localStorage.setItem('userId', res.user._id);
       setIsLoggedIn(true);
       await getUser();
-      toast.success(data.message);
       navigate('/');
-    } else {
-      toast.error(data.message);
     }
   };
 
   const login = async (email: string, password: string) => {
-    const { data } = await axiosInstance.post('/auth/sign-in', {
-      email,
-      password,
-    });
-    if (data.success) {
-      const res = data.data;
+    const res = await safeRequest<{ token: string; user: User }>(() =>
+      axiosInstance.post('/auth/sign-in', { email, password })
+    );
+
+    if (res) {
       localStorage.setItem('token', res.token);
       localStorage.setItem('userId', res.user._id);
       setIsLoggedIn(true);
       await getUser();
-      toast.success(data.message);
       navigate('/');
-    } else {
-      throw new Error(data.message);
-      // toast.error(data.message);
     }
   };
 
@@ -67,24 +52,27 @@ const useAuth = () => {
   }, []);
 
   const getUser = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
 
-      if (!token || !userId) {
-        toast.error('Missing token or userId');
-        return;
-      }
-
-      const { data } = await axiosInstance.get(`/users/${userId}`);
-      data.success ? setUser(data.data) : setUser(null);
-      if (!data.success) toast.error(data.message);
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || 'Error getting user data');
+    if (!token || !userId) {
+      toast.error('Missing token or userId');
+      return;
     }
+
+    const user = await safeRequest<User>(() =>
+      axiosInstance.get(`/users/${userId}`)
+    );
+
+    if (user) setUser(user);
   };
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setLoading(false);
+      return;
+    }
     const checkAuth = async () => {
       try {
         const res = await axiosInstance.get('/auth/me');
@@ -93,6 +81,7 @@ const useAuth = () => {
           setUser(res.data.user);
         }
       } catch (err) {
+        console.error('Auth check failed:', err);
         setUser(null);
       }
       setLoading(false);
