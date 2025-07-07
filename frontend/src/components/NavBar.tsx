@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import { Button } from './ui/button';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -10,29 +11,38 @@ const NavBar = () => {
       <h1 className="text-lg font-semibold">
         Hello, {user?.username || 'Developer'}!
       </h1>
-      {isLoggedIn ? (
-        <button
-          onClick={() => logout()}
-          className="bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-2 rounded transition"
-        >
-          Log out
-        </button>
-      ) : (
-        <button
-          onClick={() => navigate('/login')}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded transition"
-        >
-          Login
-        </button>
-      )}
-      {!isLoggedIn && (
-        <button
-          onClick={() => navigate('/register')}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded transition"
-        >
-          Register
-        </button>
-      )}
+
+      <div className="flex gap-2">
+        {isLoggedIn ? (
+          <>
+            <Button
+              variant="destructive"
+              onClick={logout}
+              className="px-4"
+            >
+              Log out
+            </Button>
+            <Button onClick={() => navigate('/dashboard')} className="px-4">
+              Profile
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              onClick={() => navigate('/login')}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4"
+            >
+              Login
+            </Button>
+            <Button
+              onClick={() => navigate('/register')}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4"
+            >
+              Register
+            </Button>
+          </>
+        )}
+      </div>
     </nav>
   );
 };

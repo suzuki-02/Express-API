@@ -67,6 +67,44 @@ const useAuth = () => {
     if (user) setUser(user);
   };
 
+  const updateUser = async (updatedData: Partial<User>): Promise<void> => {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      toast.error('No user ID found');
+      return;
+    }
+
+    const res = await safeRequest<User>(() =>
+      axiosInstance.put(`/users/${userId}`, updatedData)
+    );
+
+    if (res) {
+      setUser(res);
+      toast.success('User updated successfully');
+      navigate('/');
+    }
+  };
+
+  const deleteUser = async (): Promise<void> => {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      toast.error('No user ID found');
+      return;
+    }
+
+    const res = await safeRequest<User>(() =>
+      axiosInstance.delete(`/users/${userId}`)
+    );
+
+    if (res) {
+      logout(); // ユーザー情報とtokenのクリア
+      toast.success('Account deleted successfully');
+      navigate('/'); // トップページなどへリダイレクト
+    }
+  };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -100,6 +138,8 @@ const useAuth = () => {
     login,
     logout,
     loading,
+    updateUser,
+    deleteUser,
   };
 };
 

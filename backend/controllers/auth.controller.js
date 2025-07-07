@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.model.js';
 import { JWT_SECRET, JWT_EXPIRATION } from '../config/env.js';
+import ApiError from '../utils/ApiError.js';
 
 export const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
@@ -16,9 +17,7 @@ export const signUp = async (req, res, next) => {
     // Check if the user already exists
     const existsUser = await User.findOne({ email });
     if (existsUser) {
-      const error = new Error('User already exists');
-      error.statusCode = 409; // Already exists
-      throw error;
+      return next(new ApiError('User already exists', 409));
     }
 
     // Hash the password
@@ -87,17 +86,13 @@ export const signIn = async (req, res, next) => {
     // Find the user by email
     const user = await User.findOne({ email });
     if (!user) {
-      const error = new Error('User not found');
-      error.statusCode = 404; // Not found
-      throw error;
+      return next(new ApiError('User not found', 404));
     }
 
     // Check if the password is correct
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      const error = new Error('Invalid credentials');
-      error.statusCode = 401; // Unauthorized
-      throw error;
+      return next(new ApiError('Invalid credentials', 401));
     }
 
     // Generate a token

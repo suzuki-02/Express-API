@@ -23,4 +23,7 @@ export type AuthContextType = {
   ) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
+  loading: boolean;
+  updateUser: (updatedData: Partial<User>) => Promise<void>;
+  deleteUser: () => Promise<void>;
 };

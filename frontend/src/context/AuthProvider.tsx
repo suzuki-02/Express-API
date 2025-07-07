@@ -16,6 +16,8 @@ export const AuthContextProvider = ({
     login,
     logout,
     loading,
+    updateUser,
+    deleteUser,
   } = useAuth();
 
   const value = {
@@ -27,6 +29,9 @@ export const AuthContextProvider = ({
     register,
     login,
     logout,
+    loading,
+    updateUser,
+    deleteUser,
   };
 
   return (

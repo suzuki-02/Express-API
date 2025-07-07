@@ -22,9 +22,9 @@ const Home = () => {
     <>
       <NavBar />
 
-      <div className="max-w-3xl mx-auto mt-10 bg-white p-6 rounded-lg shadow">
-        <h1 className="text-3xl font-bold text-indigo-700 mb-6">Home Page</h1>
-        <h2 className="text-2xl font-semibold text-slate-800 mb-4 border-b pb-2">
+      <div className="max-w-3xl mx-auto mt-10 bg-transparent p-6 rounded-lg shadow text-white">
+        <h1 className="text-3xl font-bold mb-6">Home Page</h1>
+        <h2 className="text-2xl font-semibold mb-4 border-b pb-2">
           User List
         </h2>
 

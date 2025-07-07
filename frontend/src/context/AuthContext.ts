@@ -18,6 +18,9 @@ export const AuthContext = createContext<AuthContextType>({
   register: async () => {},
   login: async () => {},
   logout: () => {},
+  loading: false,
+  updateUser: async () => {},
+  deleteUser: async () => {},
 });
 
 export function useAuthContext() {
