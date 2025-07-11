@@ -1,4 +1,4 @@
-import useAuth from "../hooks/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { AuthContext } from "./AuthContext";
 
 export const AuthContextProvider = ({

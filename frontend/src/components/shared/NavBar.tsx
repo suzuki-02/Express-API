@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
-import { Button } from './ui/button';
+import { useAuthContext } from '../../context/AuthContext';
+import { Button } from '../ui/button';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -15,11 +15,7 @@ const NavBar = () => {
       <div className="flex gap-2">
         {isLoggedIn ? (
           <>
-            <Button
-              variant="destructive"
-              onClick={logout}
-              className="px-4"
-            >
+            <Button variant="destructive" onClick={logout} className="px-4">
               Log out
             </Button>
             <Button onClick={() => navigate('/dashboard')} className="px-4">

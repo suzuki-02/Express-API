@@ -1,4 +1,4 @@
-import AuthCard from '@/components/AuthCard';
+import AuthCard from '@/components/auth/AuthCard';
 import { useAuthContext } from '@/context/AuthContext';
 import { AxiosError } from 'axios';
 import React, { useState } from 'react';

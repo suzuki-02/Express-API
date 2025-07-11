@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import axiosInstance from '../utils/Axios';
+import axiosInstance from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
-import type { User } from '../types/types';
 import { safeRequest } from '../utils/api';
+import type { User } from '@/types';
 
 const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);

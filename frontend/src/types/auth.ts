@@ -1,14 +1,4 @@
-export type User = {
-  _id: string;
-  username: string;
-  email: string;
-}
-
-export type ApiResponse<T> = {
-  success: boolean;
-  message: string;
-  data: T;
-}
+import type { User } from './user';
 
 export type AuthContextType = {
   isLoggedIn: boolean;

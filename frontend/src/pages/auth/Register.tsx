@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
-import AuthCard from '@/components/AuthCard';
+import AuthCard from '@/components/auth/AuthCard';
 import { Lock, Mail, User } from 'lucide-react';
 
 const Register = () => {

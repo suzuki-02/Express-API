@@ -10,7 +10,7 @@ import {
 import { useAuthContext } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '@/components/NavBar';
+import NavBar from '@/components/shared/NavBar';
 
 const Dashboard = () => {
   const { user, logout, deleteUser } = useAuthContext();

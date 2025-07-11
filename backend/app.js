@@ -8,6 +8,7 @@ import cors from 'cors';
 
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './config/swagger.js';
+import articaleRouter from './routes/article.routes.js';
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(cors(corsOptions));
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/articles', articaleRouter);
 app.use(errorMiddleware);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
