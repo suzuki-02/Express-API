@@ -5,6 +5,32 @@ import User from '../models/user.model.js';
 import { JWT_SECRET, JWT_EXPIRATION } from '../config/env.js';
 import ApiError from '../utils/ApiError.js';
 
+/**
+ * @swagger
+ * /auth/sign-up:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [username, email, password]
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       409:
+ *         description: User already exists
+ */
 export const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
@@ -118,6 +144,16 @@ export const signIn = async (req, res, next) => {
   }
 };
 
+/**
+ * @swagger
+ * /auth/sign-out:
+ *   post:
+ *     summary: Log out a user
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User signed out successfully
+ */
 export const signOut = async (req, res, next) => {
   // Sign out logic can vary based on how you manage sessions or tokens.
   // If you're using JWT, you might not need to do anything server-side,
