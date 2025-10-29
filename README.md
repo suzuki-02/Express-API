@@ -1,48 +1,72 @@
-# Backend
+# Express API – Fullstack Boilerplate
 
-## 🛡️ Auth API
+A secure, testable, and extendable **Fullstack application** built with **Express.js**, **MongoDB**, and a modern **React + TypeScript + Tailwind** frontend.
 
-A secure and scalable authentication REST API built with **Express.js**, tested with **Jest + Supertest**, and documented using **Swagger**. Ideal for modern full-stack applications.
+---
+
+## 🛡️ Backend
+
+### 🔐 Auth + Articles API
+
+A secure and scalable REST API with core features:
+- Authentication (sign-up/sign-in)
+- CRUD operations for articles
+- Swagger documentation
+- GitHub Actions CI pipeline
+- In-memory testing with Jest + Supertest
 
 ---
 
 ### 🚧 Project Status: In Progress
 
-This project is actively being developed. Core features like authentication, CI/CD, and documentation are working, but the API is still evolving. Feedback and contributions are welcome!
+Currently developing full article CRUD support and refining UI integration. Authentication is stable and production-ready. Folder structure and codebase are being refactored for scalability.
 
 ---
 
-### 🚀 Live Demo
+### 🧱 Monorepo Structure
+
+This project follows a monorepo layout:
+Express-API/
+├── backend/
+└── frontend/
+Each has its own `package.json`, dev server, and README.
+
+---
+
+### 🛠️ Planned Features
+
+- [ ] Markdown support for articles
+- [ ] Rich text editor
+- [ ] Role-based access control
+- [ ] Article tags and filtering
+
+---
+
+### 🌐 Live Demo
 
 - **API Base URL:** [`https://express-api-vo8j.onrender.com`](https://express-api-vo8j.onrender.com/)
 - **Swagger Docs:** [`https://express-api-vo8j.onrender.com/api-docs`](https://express-api-vo8j.onrender.com/api-docs)
 
-> Replace the above links with your actual Render deployment URLs.
-
 ---
 
-### 🧰 Tech Stack
+### 🧰 Tech Stack (Backend)
 
-- **Backend:** Node.js + Express.js
-- **Database:** MongoDB (Atlas for production, In-memory for testing)
-- **Testing:** Jest + Supertest + mongodb-memory-server
+- **Framework:** Node.js + Express.js
+- **Database:** MongoDB (Atlas) + mongodb-memory-server (Test)
+- **Testing:** Jest + Supertest
 - **Docs:** Swagger (OpenAPI 3.0)
-- **CI:** GitHub Actions
+- **CI/CD:** GitHub Actions
+- **Deployment:** Render
 
 ---
 
-### ✅ Features
+### ✅ Backend Features
 
-- 🔐 **Authentication Routes**
-  - Sign-up, Sign-in, Sign-out
-- 🧪 **Comprehensive Tests**
-  - Fast, isolated tests using in-memory MongoDB
-- ⚙️ **CI Pipeline**
-  - Runs tests on every push / PR via GitHub Actions
-- 🧾 **Swagger UI**
-  - Auto-generated, interactive API documentation
-- 🌐 **Deployed on Render**
-  - Publicly accessible for testing/integration
+- 🔐 Auth (Register, Login, Logout)
+- 📝 Articles (Create, Read, Update, Delete)
+- 🧪 Isolated testing with in-memory MongoDB
+- ⚙️ Automated testing pipeline
+- 📄 Swagger UI for dev-friendly docs
 
 ---
 
@@ -50,8 +74,9 @@ This project is actively being developed. Core features like authentication, CI/
 
 ```bash
 git clone https://github.com/suzuki-02/Express-API.git
-cd your-repo
+cd Express-API/backend
 npm install
+npm run dev
 ```
 ---
 
@@ -63,32 +88,51 @@ A simple and styled frontend built with **React**, **TypeScript**, and **Tailwin
 
 ### ⚙️ Tech Stack
 
-- **Frontend Framework:** React + TypeScript
+- **Framework:** React (with Vite)
+- **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **Routing:** React Router
-- **State Management:** React Context API
-- **HTTP Client:** Axios
+- **Routing:** React Router DOM
+- **State:** React Context API
+- **HTTP:** Axios with custom `safeRequest`
+- **UI Kit:** [shadcn/ui](https://ui.shadcn.com/)
 - **Notifications:** React Toastify
 
 ---
 
-### ✨ Features
+### ✅ Frontend Features
 
-- 🔐 Authentication (Sign Up / Sign In) UI
-- 💾 Persistent session using `localStorage`
-- 🎨 Modern styling with Tailwind
-- 🧠 Global auth state via Context
-- ✅ Error handling with toast messages
+- 🔐 Auth UI (Sign Up / Sign In / Logout / Update Profile)
+- 🧠 Global auth state with Context
+- 📝 Article Form (Create/Edit)
+- 📄 Article Detail + List Pages
+- 💅 Reusable UI components
+- 🔔 User-friendly toast notifications for actions
+
+---
+### 📁 Folder Structure Highlights
+src/
+│
+├── components/
+│   ├── auth/          # Auth UI (login, register)
+│   ├── articles/      # Article form, list, detail
+│   └── shared/        # Reusable buttons, inputs, etc.
+│
+├── pages/
+│   ├── auth/          # Login/Register/UpdateProfile
+│   ├── articles/      # ArticleDetail/Edit/New
+│   └── Dashboard.tsx
+│
+├── hooks/             # useAuth, useArticles
+├── types/             # Modularized: auth.ts, article.ts, user.ts, api.ts
+├── utils/             # Axios instance, safeRequest helper
+└── context/           # AuthContext
 
 ---
 
 ### 📦 Installation
 
 ```bash
-git clone https://github.com/suzuki-02/Express-API.git
-cd Express-API
-npm install
-cd frontend
+cd Express-API/frontend
 npm install
 npm run dev
 ```

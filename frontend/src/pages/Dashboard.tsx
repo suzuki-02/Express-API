@@ -10,7 +10,6 @@ import {
 import { useAuthContext } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '@/components/shared/NavBar';
 
 const Dashboard = () => {
   const { user, logout, deleteUser } = useAuthContext();
@@ -18,7 +17,6 @@ const Dashboard = () => {
 
   return (
     <>
-      <NavBar />
       <div className="flex items-center justify-center">
         <Card className="sm:w-100">
           <CardHeader className="text-center">

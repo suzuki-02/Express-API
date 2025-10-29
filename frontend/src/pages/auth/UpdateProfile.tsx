@@ -1,6 +1,7 @@
 import AuthCard from '@/components/auth/AuthCard';
 import { useAuthContext } from '@/context/AuthContext';
 import { AxiosError } from 'axios';
+import { Mail, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -38,6 +39,7 @@ const UpdateProfile = () => {
           value: name,
           onChange: (e) => setName(e.target.value),
           required: true,
+          icon: <User size={16} />,
         },
         {
           type: 'email',
@@ -45,13 +47,11 @@ const UpdateProfile = () => {
           value: email,
           onChange: (e) => setEmail(e.target.value),
           required: true,
+          icon: <Mail size={16} />,
         },
       ]}
-      // footerText="Go back: "
       footerLink="/dashboard"
       footerNav="Cancel"
-      actionNav="/update-profile"
-      actionLabel="Edit"
     />
   );
 };
