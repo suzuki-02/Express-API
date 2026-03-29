@@ -23,4 +23,29 @@ export const articleFormSchema = z.object({
   }),
 });
 
+export interface FetchArticlesParams {
+  page?: number;
+  limit?: number;
+  q?: string;
+  publishedOnly?: boolean;
+}
+
+export interface ArticlesMeta {
+  page: number;
+  limit: number;
+  totalItems: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  q?: string;
+  publishedOnly: boolean;
+}
+
+export interface GetArticlesResponse {
+  success: boolean;
+  message: string;
+  data: Article[];
+  meta: ArticlesMeta;
+}
+
 export type ArticleFormData = z.infer<typeof articleFormSchema>;

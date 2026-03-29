@@ -13,7 +13,7 @@ const NavBar = () => {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <Logo />
         <div className="text-xl font-bold tracking-tight">
-          {user ? `Hi, ${user.username}` : 'Welcome'}
+          {user ? `Welcome, ${user.username}!` : 'Welcome, Guest!'}
         </div>
 
         {/* Right: Auth Buttons or Avatar */}
