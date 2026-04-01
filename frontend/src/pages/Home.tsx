@@ -62,7 +62,7 @@ const Home = () => {
     fetchArticles({
       page: 1,
       limit: 3,
-      publishedOnly: true,
+      publishedOnly: false,
     });
   }, [fetchArticles]);
 
@@ -89,7 +89,7 @@ const Home = () => {
             View All Articles
           </Button>
 
-          {user && (
+          {/* {user && (
             <Button
               onClick={() => {
                 navigate('/articles/new');
@@ -97,14 +97,14 @@ const Home = () => {
             >
               Write an Article
             </Button>
-          )}
+          )} */}
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto mt-10 px-4">
+      <section className="max-w-6xl mx-auto mt-10 px-4">
         <div className="mb-6 flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-white">Latest Articles</h2>
+            <h1 className="text-2xl font-bold text-black">Latest Articles</h1>
             <p className="text-sm text-muted-foreground">
               A quick preview of the most recent published posts.
             </p>
@@ -121,7 +121,7 @@ const Home = () => {
         {loading ? (
           <p className="text-center text-muted-foreground">Loading articles...</p>
         ) : articles.length > 0 ? (
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article: Article) => (
               <ArticleCard key={article._id} article={article} />
             ))}

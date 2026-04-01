@@ -9,17 +9,21 @@ const NavBar = () => {
   const { isLoggedIn, user, logout } = useAuthContext();
 
   return (
-    <nav className="bg-gray-950 text-white shadow-sm py-3 px-6">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+    <nav className="navbar">
+      <div className="flex items-center justify-between px-6 h-10">
         <Logo />
-        <div className="text-xl font-bold tracking-tight">
-          {user ? `Welcome, ${user.username}!` : 'Welcome, Guest!'}
-        </div>
 
         {/* Right: Auth Buttons or Avatar */}
         <div className="flex items-center gap-3">
           {isLoggedIn ? (
             <>
+              <Button
+                onClick={() => {
+                  navigate('/articles/new');
+                }}
+              >
+                Write an Article
+              </Button>
               <Button
                 onClick={logout}
                 variant="destructive"

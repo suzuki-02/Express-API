@@ -15,16 +15,22 @@ const DetailArticle = () => {
 
   if (!currentArticle) return <p>Loading...</p>;
   return (
-    <div className="max-w-3xl mx-auto p-4 text-white">
-      <h1 className="heading">{currentArticle.title}</h1>
-      <p className="text-gray-400 mb-2">{currentArticle.description}</p>
-      <div className="whitespace-pre-wrap">{currentArticle.content}</div>
-      <p className="text-sm text-gray-500 mt-4">
-        Published: {currentArticle.isPublished ? 'Yes' : 'No'}
-      </p>
-      <Button onClick={() => navigate('/articles')}>Back</Button>
-      <DeleteArticleButton id={currentArticle._id} />
-    </div>
+    <>
+      <section className="hero_section !min-h-[230px]">
+        <h1 className="heading">{currentArticle.title}</h1>
+
+        <p className="sub-heading !max-w-3xl">{currentArticle.description}</p>
+      </section>
+
+      <section className="content_section">
+        <div className="whitespace-pre-wrap">{currentArticle.content}</div>
+        <p className="text-sm text-gray-500 mt-4">
+          Published: {currentArticle.isPublished ? 'Yes' : 'No'}
+        </p>
+        <Button onClick={() => navigate('/articles')}>Back</Button>
+        <DeleteArticleButton id={currentArticle._id} />
+      </section>
+    </>
   );
 };
 

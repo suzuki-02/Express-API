@@ -11,6 +11,7 @@ import CreateArticle from './pages/articles/Create';
 import EditArticle from './pages/articles/Edit';
 import ListArticles from './pages/articles/List';
 import Layout from './layout/Layout';
+import TestMarkdown from './pages/TestMarkdown';
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+
+          {/* Test page */}
+          <Route path="/test-markdown" element={<TestMarkdown />} />
 
           <Route
             path="/dashboard"

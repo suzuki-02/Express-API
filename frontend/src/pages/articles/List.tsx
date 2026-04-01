@@ -87,7 +87,7 @@ const ListArticles = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto mt-10 px-4 text-white space-y-6">
+    <section className="max-w-4xl mx-auto mt-10 px-4 text-black space-y-6">
       <div className="space-y-3">
         <h1 className="text-3xl font-bold">Articles</h1>
         <SearchBar />

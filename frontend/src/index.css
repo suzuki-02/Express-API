@@ -54,7 +54,8 @@
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  /* --primary: oklch(0.208 0.042 265.755); */
+  --primary: oklch(0.6 0.2 250);
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
@@ -125,6 +126,13 @@
 }
 
 @layer utilities {
+
+  /* NavBar */
+  .navbar {
+    @apply px-5 py-3 bg-white shadow-sm;
+  }
+
+  /* Home */
   .hero_section {
     @apply w-full bg-primary min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
     background-image: linear-gradient(
@@ -164,4 +172,38 @@
   .search-btn {
     @apply size-[50px] rounded-full bg-black flex justify-center items-center;
   }
+
+  /* Article Card */
+  .article-card {
+    @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-sm hover:border-primary/50 transition-all duration-500 hover:shadow-md hover:bg-primary/20;
+  }
+
+  .article-card-date {
+    @apply text-sm text-muted-foreground py-2;
+  }
+
+  .article-card-title {
+    @apply text-xl font-semibold line-clamp-2 hover:underline;
+  }
+
+  .article-card-description {
+    @apply text-sm text-muted-foreground line-clamp-3 mt-3;
+  }
+
+  .article-card-footer {
+    @apply flex items-center justify-between gap-3 mt-5;
+  }
+
+  .article-card-tags {
+    @apply text-sm text-black line-clamp-1;
+  }
+
+  .article-card-link {
+    @apply bg-black rounded-full font-medium text-[16px] text-white px-5 py-2 hover:bg-primary/70 transition;
+  }
+
+    /* Article Detail */
+    .content_section {
+      @apply px-6 py-10 max-w-7xl mx-auto;
+    }
 }

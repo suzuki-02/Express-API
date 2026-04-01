@@ -7,9 +7,10 @@ const Logo = () => {
     <div
       title="Go to Home"
       onClick={() => navigate('/')}
-      className="cursor-pointer text-2xl font-bold tracking-tight text-emerald-400 hover:text-emerald-300 transition"
+      className="cursor-pointer text-2xl font-bold tracking-tight"
     >
-      DevPress
+      <span className="text-primary">Dev</span>
+      <span className="text-foreground">Press</span>
     </div>
   );
 };
