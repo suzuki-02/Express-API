@@ -2,7 +2,7 @@ import {
   Card,
   CardAction,
   CardContent,
-  CardDescription,
+  // CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,

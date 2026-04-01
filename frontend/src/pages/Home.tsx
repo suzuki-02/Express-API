@@ -53,7 +53,7 @@ import ArticleCard from '@/components/articles/ArticleCard';
 import type { Article } from '@/types';
 
 const Home = () => {
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
   const navigate = useNavigate();
 
   const { articles, loading, fetchArticles } = useArticles();
