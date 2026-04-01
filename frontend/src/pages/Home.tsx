@@ -47,7 +47,7 @@
 import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { useAuthContext } from '@/context/AuthContext';
+// import { useAuthContext } from '@/context/AuthContext';
 import useArticles from '@/hooks/useArticles';
 import ArticleCard from '@/components/articles/ArticleCard';
 import type { Article } from '@/types';
