@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteArticleButton from '../../components/articles/DeleteArticleButton';
 import { Button } from '@/components/ui/button';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const DetailArticle = () => {
   const { id } = useParams(); // URL: /articles/:id
@@ -23,10 +25,17 @@ const DetailArticle = () => {
       </section>
 
       <section className="content_section">
-        <div className="whitespace-pre-wrap">{currentArticle.content}</div>
+        <div className="mt-8 prose max-w-none dark:prose-invert">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {currentArticle.content}
+          </ReactMarkdown>
+        </div>
         <p className="text-sm text-gray-500 mt-4">
           Published: {currentArticle.isPublished ? 'Yes' : 'No'}
         </p>
+
+        <hr className="divider" />
+
         <Button onClick={() => navigate('/articles')}>Back</Button>
         <DeleteArticleButton id={currentArticle._id} />
       </section>

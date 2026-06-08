@@ -5,9 +5,9 @@ import Footer from '@/components/shared/Footer';
 
 const Layout: FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br relative overflow-hidden">
+    <div className="min-h-screen flex flex-col">
       <NavBar />
-      <main className="mx-auto">
+      <main className="flex-1 pb-10">
         <Outlet />
       </main>
       <Footer />

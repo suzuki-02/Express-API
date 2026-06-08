@@ -22,7 +22,7 @@ const NavBar = () => {
                   navigate('/articles/new');
                 }}
               >
-                Write an Article
+                Create
               </Button>
               <Button
                 onClick={logout}
